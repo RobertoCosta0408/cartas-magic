@@ -3,7 +3,7 @@ import { createMessage } from './messages';
 
 import { tokenConfig } from './auth';
 
-import { GET_CARDS, DELETE_CARD, ADD_CARD, GET_ERRORS, GET_CARDS_LOADING } from './types';
+import { GET_CARDS, DELETE_CARD, ADD_CARD, GET_ERRORS, GET_CARDS_LOADING, EDIT_CARD } from './types';
 
 // Get All Cards
 export const getCards = () => (dispatch, getState) => {
@@ -58,4 +58,16 @@ export const addCard = (card) => (dispatch, getState) => {
                 payload: errors
             });
         });
+}
+
+export const editCards = (id, card) => (dispatch, getState) => {
+    
+    axios.put(`/cards/${id}/`, card, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: EDIT_CARD,
+                payload: res.data,
+                items: res.data
+            });
+        }).catch(err => console.log(err));
 }

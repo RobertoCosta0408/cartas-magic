@@ -6,6 +6,8 @@ import { getCards, deleteCard } from '../../actions/cards';
 import Datatable from "react-bs-datatable"; // Import this package
 //import "bootstrap/dist/css/bootstrap.css";
 
+import NewCardModal from './NewCardModal';
+
 import moment from 'moment';
 export class Cards extends Component {
     constructor(props) {
@@ -25,7 +27,18 @@ export class Cards extends Component {
           },
           { title: "Description", prop: "description", sortable: true, filterable: true },
           { title: "Collection", prop: "collection_name", sortable: true, filterable: true },
-          { title: "Actions", prop: "", 
+          { title: "Edit", prop: "", 
+            cell: row => (
+              <NewCardModal
+                    create={false}
+                    card={row}
+                    resetState={this.props.resetState}
+                  />
+            ),
+          
+            sortable: false, filterable: false 
+          },
+          { title: "Delete", prop: "", 
             cell: row => (
               <button onClick={this.props.deleteCard.bind(this,row.id)} className="btn btn-danger btn-sm">Delete</button>
             ),
@@ -90,6 +103,12 @@ export class Cards extends Component {
           return (
             <Fragment>
             <div className="container">
+
+            <NewCardModal
+                    create={true}
+                    card=''
+                    resetState={this.props.resetState}
+                  />
             
             <h1>Cards List</h1>
               <Datatable
@@ -97,7 +116,7 @@ export class Cards extends Component {
                 tableBody={this.state.items}
                 keyName="userTable"
                 tableClass="striped hover responsive"
-                rowsPerPage={3}
+                rowsPerPage={5}
                 //rowsPerPageOption={[3, 5, 8, 10]}
                 initialSort={{ prop: "name", isAscending: true }}
             />

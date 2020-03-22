@@ -22,3 +22,5 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 
 export const GET_CARDS_LOADING = "GET_CARDS_LOADING";
+
+export const EDIT_CARD = "EDIT_CARD";

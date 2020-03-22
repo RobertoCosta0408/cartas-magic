@@ -1,4 +1,4 @@
-import { GET_CARDS, DELETE_CARD, ADD_CARD, GET_CARDS_LOADING } from '../actions/types.js';
+import { GET_CARDS, DELETE_CARD, ADD_CARD, GET_CARDS_LOADING, EDIT_CARD } from '../actions/types.js';
 
 const initialState = {
     cards: [],
@@ -29,6 +29,20 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 cards: [...state.cards, action.payload],
+                isLoaded: true
+            }
+        case EDIT_CARD:
+            console.log('edicao em curso');
+            console.log(action.payload);
+            console.log(state.cards);
+            
+            const newArrayCards = state.cards.filter(card => card.id !== action.payload.id);
+            console.log(newArrayCards);
+            console.log('***********');
+            
+            return {
+                ...state,
+                cards: [...newArrayCards, action.payload],
                 isLoaded: true
             }
         default:
