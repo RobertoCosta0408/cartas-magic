@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from mysite.core.forms import SignUpForm
-from mysite.core.serializers import UserSerializer, CardSerializer, CollectionSerializer
+from mysite.core.serializers import UserSerializer, CardSerializer, CollectionSerializer, UsersListSerializer
 from rest_framework import viewsets, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -94,3 +94,17 @@ class CollectionViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
     
+
+class UsersListSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+
+    serializer_class = UsersListSerializer
+    
+    def get_queryset(self):
+        user = self.request.user
+        if check_admin(user):
+            return User.objects.all()
+        return self.request.user
+    
+    #permission_classes = [permissions.AllowAny]

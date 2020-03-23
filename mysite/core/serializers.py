@@ -25,3 +25,9 @@ class CollectionSerializer(serializers.ModelSerializer):
         model = Collection
         fields = '__all__'
         #fields = ['name']
+
+#user list serializer
+class UsersListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'first_name', 'last_name', 'is_superuser')

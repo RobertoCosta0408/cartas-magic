@@ -12,10 +12,25 @@ export class Header extends Component {
         logout: PropTypes.func.isRequired
     }
 
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            isAuthenticated: null,
+            user: null,
+        };
+    }
     render() {
 
         const { isAuthenticated, user } = this.props.auth;
+
+        let isSuperUser = true;
+        if (user !== null){
+            isSuperUser = user.is_superuser;
+            console.log(user.is_superuser);
+        }
+        else {
+            isSuperUser = false;
+        }
 
         const authLinks = (
             <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -39,19 +54,18 @@ export class Header extends Component {
             </ul>
         );
 
+        const usersList = (
+            <Link to="/users_list" className="navbar-brand">Users</Link>
+        );
+
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
                 <a className="navbar-brand" href="#">Magic Cards</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-                </button>
-            
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    
                 
-                </div>
-
+                
+                { isSuperUser ? usersList : '' }
+                
                 { isAuthenticated ? authLinks : guestLinks }
                 
 

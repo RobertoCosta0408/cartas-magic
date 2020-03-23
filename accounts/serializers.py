@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'is_superuser')
 
 #register serializer
 class RegisterSerializer(serializers.ModelSerializer):
@@ -39,3 +39,10 @@ class LoginSerializer(serializers.Serializer):
         else:
             raise serializers.ValidationError("Incorrect Credentials")
 
+"""
+#user serializer
+class UsersListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'first_name', 'last_name', 'is_superuser')
+"""

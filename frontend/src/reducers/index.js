@@ -4,6 +4,7 @@ import collections from './collections';
 import errors from './errors';
 import messages from './messages';
 import auth from './auth';
+import users from './users'
 import { DataTableReducer } from 'react-redux-datatable';
 
 
@@ -13,5 +14,6 @@ export default combineReducers({
     DataTableReducer,
     errors,
     messages,
-    auth
+    auth,
+    users
 });

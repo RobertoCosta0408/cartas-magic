@@ -7,7 +7,7 @@ from mysite.core import views
 
 
 router = routers.DefaultRouter()
-router.register(r'users_list_api', views.UserViewSet)
+router.register(r'auth/users', views.UsersListSet, 'users_list')
 router.register(r'cards', views.CardViewSet, 'cards')
 router.register(r'collections', views.CollectionViewSet)
 

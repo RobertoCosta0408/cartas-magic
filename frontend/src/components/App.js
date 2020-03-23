@@ -18,6 +18,8 @@ import store from '../store';
 
 import { loadUser } from '../actions/auth';
 
+import Users from './users/Users';
+
 const alertOptions = {
     timeout: 3000,
     position: 'top center'
@@ -40,6 +42,7 @@ class App extends Component {
                             <div className="container">
                                 <Switch>
                                     <PrivateRoute exact path="/" component={Dashboard} />
+                                    <PrivateRoute exact path="/users_list" component={Users} />
                                     <Route exact path="/register" component={Register} />
                                     <Route exact path="/login" component={Login} />
                                 </Switch>

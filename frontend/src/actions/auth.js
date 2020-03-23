@@ -16,7 +16,7 @@ export const loadUser = () => (dispatch, getState) => {
     dispatch({ type: USER_LOADING })
 
     const config = tokenConfig(getState);
-
+    console.log(config);
     axios.get('/auth/user', config)
         .then(res => {
             dispatch({
