@@ -12,6 +12,7 @@ import AlertTemplate from 'react-alert-template-basic';
 import Login from './accounts/Login';
 import Register from './accounts/Register';
 import PrivateRoute from './common/PrivateRoute';
+import AdminRoute from './common/AdminRoute';
 
 import { Provider } from 'react-redux';
 import store from '../store';
@@ -42,7 +43,7 @@ class App extends Component {
                             <div className="container">
                                 <Switch>
                                     <PrivateRoute exact path="/" component={Dashboard} />
-                                    <PrivateRoute exact path="/users_list" component={Users} />
+                                    <AdminRoute exact path="/users_list" component={Users} />
                                     <Route exact path="/register" component={Register} />
                                     <Route exact path="/login" component={Login} />
                                 </Switch>

@@ -102,7 +102,7 @@ export class Cards extends Component {
         } else {
           return (
             <Fragment>
-            <div className="container">
+            <div className="container mt-4">
 
             <NewCardModal
                     create={true}
@@ -126,41 +126,6 @@ export class Cards extends Component {
           );
         }
     }
-    /*
-    render() {
-        
-        return (
-            <Fragment>
-                <h1>Cards List</h1>
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Number</th>
-                            <th>Description</th>
-                            <th>Collection</th>
-                            <th> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.props.cards.map(card => (
-                            <tr key={card.id}>
-                                <td>{card.id}</td>
-                                <td>{card.name}</td>
-                                <td>{card.number}</td>
-                                <td>{card.description}</td>
-                                <td>{card.collection_name}</td>
-                                
-                                <td><button onClick={this.props.deleteCard.bind(this,card.id)} className="btn btn-danger btn-sm">Delete</button></td>
-                            </tr>
-                        )) }
-                    </tbody>
-                </table>
-            </Fragment>
-        )
-    }
-    */
 }
 
 const mapStateToProps = state => ({

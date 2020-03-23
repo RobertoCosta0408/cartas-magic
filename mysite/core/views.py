@@ -97,7 +97,7 @@ class CollectionViewSet(viewsets.ModelViewSet):
 
 class UsersListSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
 
     serializer_class = UsersListSerializer
     

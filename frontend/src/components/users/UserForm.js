@@ -32,7 +32,21 @@ class UserForm extends React.Component {
   onChange = e => {
       console.log(e.target.value);
       console.log(e.target.selected);
-    this.setState({ [e.target.name]: e.target.value });
+      console.log(e.target.name);
+      if (e.target.name == "is_superuser"){
+        if (e.target.value == "false"){
+            console.log('coloca a true');
+            this.setState({ [e.target.name]: true });
+        }
+        else{
+            console.log('coloca a falso');
+            this.setState({ [e.target.name]: false });
+        }
+      }
+      else{
+        this.setState({ [e.target.name]: e.target.value });
+      }
+    
   };
 
   
@@ -99,7 +113,7 @@ class UserForm extends React.Component {
         </FormGroup>
         <FormGroup>
           <Input
-            type="text"
+            type="checkbox"
             name="is_superuser"
             className="ml-auto"
             onChange={this.onChange}

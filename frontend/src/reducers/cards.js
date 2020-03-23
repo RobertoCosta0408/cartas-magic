@@ -32,13 +32,8 @@ export default function(state = initialState, action) {
                 isLoaded: true
             }
         case EDIT_CARD:
-            console.log('edicao em curso');
-            console.log(action.payload);
-            console.log(state.cards);
             
             const newArrayCards = state.cards.filter(card => card.id !== action.payload.id);
-            console.log(newArrayCards);
-            console.log('***********');
             
             return {
                 ...state,

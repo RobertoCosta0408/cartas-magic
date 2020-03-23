@@ -3,7 +3,7 @@ import axios from 'axios'
 import { createMessage } from './messages';
 import { tokenConfig } from './auth';
 
-import { GET_COLLECTIONS, DELETE_COLLECTION, ADD_COLLECTION } from './types';
+import { GET_COLLECTIONS, DELETE_COLLECTION, ADD_COLLECTION, EDIT_COLLECTION } from './types';
 
 // Get All Collections
 export const getCollections = () => (dispatch, getState) => {
@@ -47,11 +47,23 @@ export const addCollection = (collection) => (dispatch, getState) => {
 
 // Delete Collections
 export const deleteCollection = (id) => (dispatch, getState) => {
-    axios.delete(`/collection/${id}/`, tokenConfig(getState))
+    axios.delete(`/collections/${id}/`, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: DELETE_COLLECTION,
                 payload: id
+            });
+        }).catch(err => console.log(err));
+}
+
+export const editCollection = (id, collection) => (dispatch, getState) => {
+    
+    axios.put(`/collections/${id}/`, collection, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: EDIT_COLLECTION,
+                payload: res.data,
+                items: res.data
             });
         }).catch(err => console.log(err));
 }

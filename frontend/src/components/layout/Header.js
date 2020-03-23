@@ -17,21 +17,13 @@ export class Header extends Component {
         this.state = {
             isAuthenticated: null,
             user: null,
+            isSuperUser: null
         };
     }
     render() {
 
-        const { isAuthenticated, user } = this.props.auth;
-
-        let isSuperUser = true;
-        if (user !== null){
-            isSuperUser = user.is_superuser;
-            console.log(user.is_superuser);
-        }
-        else {
-            isSuperUser = false;
-        }
-
+        const { isAuthenticated, user, isSuperUser } = this.props.auth;
+        
         const authLinks = (
             <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                 <span className="navbar-text mr-3">

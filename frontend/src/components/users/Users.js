@@ -25,7 +25,15 @@ export class Users extends Component {
           },
           { title: "First Name", prop: "first_name", sortable: true, filterable: true },
           { title: "Last Name", prop: "last_name", sortable: true, filterable: true },
-          { title: "Is Admin", prop: "is_superuser", sortable: true, filterable: true },
+          { title: "Is Admin", prop: "is_superuser", 
+          
+          cell: row => (
+            <input type="checkbox"
+            readOnly
+            checked={row.is_superuser}>
+            </input>
+          ),
+          sortable: true, filterable: true },
           { title: "Edit", prop: "", 
             cell: row => (
               <UserModal
@@ -66,6 +74,7 @@ export class Users extends Component {
         //rever isto - mudar o axios para na action fazer set a isto
         this.state.isLoaded = true;
         this.state.items = this.props.users;
+        console.log(this.state.items);
 
         const { error, isLoaded, items } = this.state;
         if (error) {
