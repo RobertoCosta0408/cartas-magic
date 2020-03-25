@@ -32,7 +32,16 @@ export const deleteCard = (id) => (dispatch, getState) => {
                 type: DELETE_CARD,
                 payload: id
             });
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            dispatch(
+                getCards()
+            );
+            dispatch(
+                createMessage({
+                    errorCard: err.response.data.detail
+                })
+            );
+        });
 }
 
 // Get Add Card
@@ -69,5 +78,14 @@ export const editCards = (id, card) => (dispatch, getState) => {
                 payload: res.data,
                 items: res.data
             });
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            dispatch(
+                getCards()
+            );
+            dispatch(
+                createMessage({
+                    errorCard: err.response.data.detail
+                })
+            );
+        });
 }

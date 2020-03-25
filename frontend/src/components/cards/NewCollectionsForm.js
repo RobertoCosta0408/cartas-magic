@@ -68,7 +68,7 @@ class NewCollectionForm extends React.Component {
             value={this.defaultIfEmpty(this.state.name)}
           />
         </FormGroup>
-        <Button>Send</Button>
+        <Button>{this.props.modalButton}</Button>
       </Form>
     );
   }

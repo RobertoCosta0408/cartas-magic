@@ -4,9 +4,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/auth';
 import { createMessage } from '../../actions/messages';
+import zxcvbn from 'zxcvbn';
 
 
 export class Register extends Component {
+  constructor(props) {
+    super(props);
+  
+     this.password_strenght = 0;
+  }
     state = {
         username: '',
         email: '',
@@ -20,12 +26,16 @@ export class Register extends Component {
       register: PropTypes.func.isRequired,
       isAuthenticated: PropTypes.bool
   }
-
+  
+  
     onSubmit = e => {
         e.preventDefault();
         const { username, email, first_name, last_name, password, password2 } = this.state;
         if( password != password2 ){
           this.props.createMessage({ passwordNotMatch: 'Passwords do not match.' });
+        }
+        else if (this.password_strenght < 3){
+          this.props.createMessage({ passwordNotMatch: 'Password is too weak.' });
         }
         else{
           const newUser = {
@@ -39,7 +49,24 @@ export class Register extends Component {
         }
     }
 
-    onChange = e => this.setState({ [e.target.name]: e.target.value });
+  
+    onChange = e => {
+      if (e.target.name == "password"){
+        this.password_strenght = zxcvbn(e.target.value).score;
+
+        if (this.password_strenght < 3){
+          this.setState({ [e.target.name]: e.target.value });
+        }
+        else{
+          this.setState({ [e.target.name]: e.target.value });
+        }
+      }
+      else{
+        this.setState({ [e.target.name]: e.target.value });
+      }
+    
+    };
+    //onChange = e => this.setState({ [e.target.name]: e.target.value });
     
     render() {
         if(this.props.isAuthenticated){
@@ -57,6 +84,7 @@ export class Register extends Component {
                 <div className="form-group">
                   <label>Username</label>
                   <input
+                    required
                     type="text"
                     className="form-control"
                     name="username"
@@ -67,6 +95,7 @@ export class Register extends Component {
                 <div className="form-group">
                   <label>First Name</label>
                   <input
+                    required
                     type="text"
                     className="form-control"
                     name="first_name"
@@ -77,6 +106,7 @@ export class Register extends Component {
                 <div className="form-group">
                   <label>Last Name</label>
                   <input
+                    required
                     type="text"
                     className="form-control"
                     name="last_name"
@@ -87,6 +117,7 @@ export class Register extends Component {
                 <div className="form-group">
                   <label>Email</label>
                   <input
+                    required
                     type="email"
                     className="form-control"
                     name="email"
@@ -97,6 +128,7 @@ export class Register extends Component {
                 <div className="form-group">
                   <label>Password</label>
                   <input
+                    required
                     type="password"
                     className="form-control"
                     name="password"
@@ -107,6 +139,7 @@ export class Register extends Component {
                 <div className="form-group">
                   <label>Confirm Password</label>
                   <input
+                    required
                     type="password"
                     className="form-control"
                     name="password2"

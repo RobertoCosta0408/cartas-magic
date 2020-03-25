@@ -1,4 +1,4 @@
-import { GET_COLLECTIONS, DELETE_COLLECTION, ADD_COLLECTION, EDIT_COLLECTION } from '../actions/types.js';
+import { GET_COLLECTIONS, DELETE_COLLECTION, ADD_COLLECTION, EDIT_COLLECTION, GET_COLLECTIONS_ERRORS } from '../actions/types.js';
 
 const initialState = {
     collections: []
@@ -7,6 +7,7 @@ const initialState = {
 export default function(state = initialState, action) {
     switch(action.type){
         case GET_COLLECTIONS:
+        case GET_COLLECTIONS_ERRORS:
             return {
                 ...state,
                 collections: action.payload

@@ -18,8 +18,10 @@ class NewCollectionModal extends Component {
 
     var title = "Editing Collection";
     var button = <Button onClick={this.toggle}>Edit</Button>;
+    var modalButton = 'Edit';
     if (create) {
       title = "Creating New Collection";
+      modalButton = 'Create';
 
       button = (
         <Button
@@ -44,6 +46,7 @@ class NewCollectionModal extends Component {
               resetState={this.props.resetState}
               toggle={this.toggle}
               collection={this.props.collection}
+              modalButton={modalButton}
             />
           </ModalBody>
         </Modal>

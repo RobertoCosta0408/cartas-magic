@@ -122,7 +122,7 @@ class UserForm extends React.Component {
           />
           <Label for="is_superuser">Is Admin</Label>
         </FormGroup>
-        <Button>Send</Button>
+        <Button>Edit</Button>
       </Form>
     );
   }

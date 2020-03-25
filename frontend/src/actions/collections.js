@@ -31,9 +31,6 @@ export const addCollection = (collection) => (dispatch, getState) => {
                 payload: res.data,
             });
         }).catch(err => {
-            console.log('erro');
-            console.log(err);
-
             const errors = {
                 msg: err.response.data,
                 status: err.response.status
@@ -53,7 +50,16 @@ export const deleteCollection = (id) => (dispatch, getState) => {
                 type: DELETE_COLLECTION,
                 payload: id
             });
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            dispatch(
+                getCollections()
+            );
+            dispatch(
+                createMessage({
+                    errorCollection: err.response.data.detail
+                })
+            );
+        });
 }
 
 export const editCollection = (id, collection) => (dispatch, getState) => {
@@ -65,5 +71,14 @@ export const editCollection = (id, collection) => (dispatch, getState) => {
                 payload: res.data,
                 items: res.data
             });
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            dispatch(
+                getCollections()
+            );
+            dispatch(
+                createMessage({
+                    errorCollection: err.response.data.detail
+                })
+            );
+        });
 }

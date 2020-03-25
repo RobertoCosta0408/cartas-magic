@@ -32,7 +32,16 @@ export const deleteUser = (id) => (dispatch, getState) => {
                 type: DELETE_USER,
                 payload: id
             });
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            dispatch(
+                getUsers()
+            );
+            dispatch(
+                createMessage({
+                    errorUser: err.response.data.detail
+                })
+            );
+        });
 }
 
 export const editUsers = (id, user) => (dispatch, getState) => {
@@ -44,5 +53,14 @@ export const editUsers = (id, user) => (dispatch, getState) => {
                 payload: res.data,
                 items: res.data
             });
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            dispatch(
+                getUsers()
+            );
+            dispatch(
+                createMessage({
+                    errorUser: err.response.data.detail
+                })
+            );
+        });
 }

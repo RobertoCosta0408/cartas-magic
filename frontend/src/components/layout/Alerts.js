@@ -39,8 +39,20 @@ export class Alerts extends Component {
             if(message.addCard) {
                 alert.success(message.addCard);
             }
+            if(message.addCollection) {
+                alert.success(message.addCollection);
+            }
             if (message.passwordNotMatch) {
                 alert.error(message.passwordNotMatch);
+            }
+            if (message.errorCollection) {
+                alert.error(message.errorCollection);
+            }
+            if (message.errorCard) {
+                alert.error(message.errorCard);
+            }
+            if (message.errorUser) {
+                alert.error(message.errorUser);
             }
         }
     }

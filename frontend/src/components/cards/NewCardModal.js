@@ -18,8 +18,11 @@ class NewCardModal extends Component {
 
     var title = "Editing Card";
     var button = <Button onClick={this.toggle}>Edit</Button>;
+    var modalButton = 'Edit';
+
     if (create) {
       title = "Creating New Card";
+      modalButton = 'Create';
 
       button = (
         <Button
@@ -44,6 +47,7 @@ class NewCardModal extends Component {
               resetState={this.props.resetState}
               toggle={this.toggle}
               card={this.props.card}
+              modalButton={modalButton}
             />
           </ModalBody>
         </Modal>

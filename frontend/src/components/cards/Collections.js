@@ -7,6 +7,7 @@ import Datatable from "react-bs-datatable"; // Import this package
 //import "bootstrap/dist/css/bootstrap.css";
 
 import NewCollectionModal from './NewCollectionsModal';
+import ConfirmRemoveModalCollection from './ConfirmRemoveModalCollection'
 
 import moment from 'moment';
 export class Collections extends Component {
@@ -19,24 +20,24 @@ export class Collections extends Component {
         };
         this.header = [
           { title: "Name", prop: "name", sortable: true, filterable: true },
-          { title: "Edit", prop: "", 
+          { title: "Actions", prop: "", 
             cell: row => (
+              <div>
               <NewCollectionModal
                     create={false}
                     collection={row}
                     resetState={this.props.resetState}
                   />
+              <ConfirmRemoveModalCollection
+                    pk={row.id}
+                    name={row.name}
+                    resetState={this.props.resetState}
+                  />
+              </div>
             ),
           
             sortable: false, filterable: false 
           },
-          { title: "Delete", prop: "", 
-            cell: row => (
-              <button onClick={this.props.deleteCollection.bind(this,row.id)} className="btn btn-danger btn-sm">Delete</button>
-            ),
-          
-            sortable: false, filterable: false 
-          }
         ];
     }
 

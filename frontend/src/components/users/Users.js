@@ -6,6 +6,7 @@ import { getUsers, deleteUser } from '../../actions/users';
 import Datatable from "react-bs-datatable"; // Import this package
 
 import UserModal from './UserModal';
+import ConfirmRemoveModalUser from './ConfirmRemoveModalUser'
 
 export class Users extends Component {
     constructor(props) {
@@ -34,24 +35,24 @@ export class Users extends Component {
             </input>
           ),
           sortable: true, filterable: true },
-          { title: "Edit", prop: "", 
+          { title: "Actions", prop: "", 
             cell: row => (
-              <UserModal
-                    create={false}
-                    user={row}
+              <div>
+                <UserModal
+                      create={false}
+                      user={row}
+                      resetState={this.props.resetState}
+                    />
+                <ConfirmRemoveModalUser
+                    pk={row.id}
+                    username={row.username}
                     resetState={this.props.resetState}
                   />
+              </div>
             ),
           
             sortable: false, filterable: false 
           },
-          { title: "Delete", prop: "", 
-            cell: row => (
-              <button onClick={this.props.deleteUser.bind(this,row.id)} className="btn btn-danger btn-sm">Delete</button>
-            ),
-          
-            sortable: false, filterable: false 
-          }
         ];
     }
 

@@ -7,6 +7,7 @@ import Datatable from "react-bs-datatable"; // Import this package
 //import "bootstrap/dist/css/bootstrap.css";
 
 import NewCardModal from './NewCardModal';
+import ConfirmRemoveModalCard from './ConfirmRemoveModalCard'
 
 import moment from 'moment';
 export class Cards extends Component {
@@ -27,24 +28,24 @@ export class Cards extends Component {
           },
           { title: "Description", prop: "description", sortable: true, filterable: true },
           { title: "Collection", prop: "collection_name", sortable: true, filterable: true },
-          { title: "Edit", prop: "", 
+          { title: "Actions", prop: "", 
             cell: row => (
-              <NewCardModal
-                    create={false}
-                    card={row}
+              <div>
+                <NewCardModal
+                      create={false}
+                      card={row}
+                      resetState={this.props.resetState}
+                    />
+                <ConfirmRemoveModalCard
+                    pk={row.id}
+                    name={row.name}
                     resetState={this.props.resetState}
                   />
+              </div>
             ),
           
             sortable: false, filterable: false 
           },
-          { title: "Delete", prop: "", 
-            cell: row => (
-              <button onClick={this.props.deleteCard.bind(this,row.id)} className="btn btn-danger btn-sm">Delete</button>
-            ),
-          
-            sortable: false, filterable: false 
-          }
         ];
     }
 
@@ -58,26 +59,6 @@ export class Cards extends Component {
         this.props.getCards();
     }
     
-    /*
-    componentDidMount() {
-        fetch("http://127.0.0.1:8000/cards/")
-          .then(res => res.json())
-          .then(
-            result => {
-              this.setState({
-                isLoaded: true,
-                items: result
-              });
-            },
-            error => {
-              this.setState({
-                isLoaded: true,
-                error: error
-              });
-            }
-          );
-    }
-    */
     render() {
 
         console.log('state isloaded: ');

@@ -53,12 +53,6 @@ class NewCardForm extends React.Component {
             collection: '',
         });
         this.props.toggle();
-        /*
-        axios.post('/cards/', this.state, tokenConfig(getState)).then(() => {
-        this.props.resetState();
-        this.props.toggle();
-        });
-        */
   };
 
   editCard = e => {
@@ -75,12 +69,7 @@ class NewCardForm extends React.Component {
         collection: '',
     });
     this.props.toggle();
-    /*
-    axios.put(`/cards/${this.state.id}/`, this.state, tokenConfig(getState)).then(() => {
-      this.props.resetState();
-      this.props.toggle();
-    });
-    */
+    
   };
 
   defaultIfEmpty = value => {
@@ -131,19 +120,15 @@ class NewCardForm extends React.Component {
             </select>
 
         </FormGroup>
-        <Button>Send</Button>
+        <Button>{this.props.modalButton}</Button>
       </Form>
     );
   }
 }
 
-//export default NewCardForm;
-
-
 const mapStateToProps = state => ({
     cards: state.cards.cards,
     collections: state.collections.collections
 });
-
 
 export default connect(mapStateToProps, { getCollections, editCards, toggle, addCard }) (NewCardForm);
