@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from mysite.core.models import Card, Collection
 
@@ -11,8 +11,6 @@ class UserSerializer(serializers.ModelSerializer):
 class CardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
-        
-        #fields = '__all__'
         fields = ['id', 'name', 'number', 'description', 'collection_name', 'user', 'collection']
 
     collection_name = serializers.SerializerMethodField('get_collection_name')
@@ -24,7 +22,6 @@ class CollectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Collection
         fields = '__all__'
-        #fields = ['name']
 
 #user list serializer
 class UsersListSerializer(serializers.ModelSerializer):

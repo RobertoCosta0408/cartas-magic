@@ -23,23 +23,17 @@ class UserForm extends React.Component {
 
   componentDidMount() {
     if (this.props.user) {
-        console.log(this.props.user);
       const { id, username, email, first_name, last_name, is_superuser } = this.props.user;
       this.setState({ id, username, email, first_name, last_name, is_superuser });
     }
   }
 
   onChange = e => {
-      console.log(e.target.value);
-      console.log(e.target.selected);
-      console.log(e.target.name);
       if (e.target.name == "is_superuser"){
         if (e.target.value == "false"){
-            console.log('coloca a true');
             this.setState({ [e.target.name]: true });
         }
         else{
-            console.log('coloca a falso');
             this.setState({ [e.target.name]: false });
         }
       }
@@ -52,11 +46,9 @@ class UserForm extends React.Component {
   
   editUser = e => {
     e.preventDefault();
-    console.log('a editar cenas');
-    console.log(this.state);
     
     this.props.editUsers(this.state.id, this.state);
-    //this.props.resetState();
+
     this.setState({
         id: 0,
         username: "",

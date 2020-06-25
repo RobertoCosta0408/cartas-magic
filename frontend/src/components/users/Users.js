@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getUsers, deleteUser } from '../../actions/users';
 
-import Datatable from "react-bs-datatable"; // Import this package
+import Datatable from "react-bs-datatable";
 
 import UserModal from './UserModal';
 import ConfirmRemoveModalUser from './ConfirmRemoveModalUser'
@@ -72,10 +72,8 @@ export class Users extends Component {
         const header = this.header;
         const body = this.state.items;
         
-        //rever isto - mudar o axios para na action fazer set a isto
         this.state.isLoaded = true;
         this.state.items = this.props.users;
-        console.log(this.state.items);
 
         const { error, isLoaded, items } = this.state;
         if (error) {
@@ -96,7 +94,6 @@ export class Users extends Component {
                 keyName="userTable"
                 tableClass="striped hover responsive"
                 rowsPerPage={5}
-                //rowsPerPageOption={[3, 5, 8, 10]}
                 initialSort={{ prop: "username", isAscending: true }}
             />
              

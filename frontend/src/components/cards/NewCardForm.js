@@ -34,14 +34,9 @@ class NewCardForm extends React.Component {
   };
 
   createCard = e => {
-      console.log('esta a criar carta');
 
         e.preventDefault();
         e.preventDefault();
-        console.log(this.state);
-        //this.state.user = "1";
-        //console.log(this.state);
-
         
         const { name, number, description, collection } = this.state;
         const card = { name, number, description, collection };
@@ -57,11 +52,9 @@ class NewCardForm extends React.Component {
 
   editCard = e => {
     e.preventDefault();
-    console.log('a editar cenas');
-    console.log(this.state);
     
     this.props.editCards(this.state.id, this.state);
-    //this.props.resetState();
+    
     this.setState({
         name: '',
         number: '',

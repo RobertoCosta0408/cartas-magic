@@ -38,11 +38,3 @@ class LoginSerializer(serializers.Serializer):
             return user
         else:
             raise serializers.ValidationError("Incorrect Credentials")
-
-"""
-#user serializer
-class UsersListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name', 'is_superuser')
-"""

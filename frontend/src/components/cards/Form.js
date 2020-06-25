@@ -9,7 +9,6 @@ export class Form extends Component {
         collections: PropTypes.array.isRequired,
         getCollections: PropTypes.func.isRequired,
         addCard: PropTypes.func.isRequired
-        //deleteCollection: PropTypes.func.isRequired
     }
 
     state = {
@@ -17,17 +16,12 @@ export class Form extends Component {
         number: '',
         description: '',
         collection: '',
-        //user: '',
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
 
     onSubmit = e => {
         e.preventDefault();
-        console.log(this.state);
-        //this.state.user = "1";
-        //console.log(this.state);
-
         
         const { name, number, description, collection } = this.state;
         const card = { name, number, description, collection };

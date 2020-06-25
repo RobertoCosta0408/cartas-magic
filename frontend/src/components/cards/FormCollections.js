@@ -8,7 +8,6 @@ export class FormCollection extends Component {
         collections: PropTypes.array.isRequired,
         getCollections: PropTypes.func.isRequired,
         addCollection: PropTypes.func.isRequired
-        //deleteCollection: PropTypes.func.isRequired
     }
 
     state = {
@@ -19,13 +18,10 @@ export class FormCollection extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        console.log('submit');
         
         const { name } = this.state;
         const collection = { name };
         
-        console.log(this.state);
-        console.log(collection);
         
         this.props.addCollection(collection);
         this.setState({
@@ -33,11 +29,7 @@ export class FormCollection extends Component {
         });
         
     }
-    /*
-    componentDidMount() {
-        this.props.getCollections();
-    }
-    */
+    
     render() {
         const { name } = this.state;
         return (

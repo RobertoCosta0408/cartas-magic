@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework import generics, permissions, viewsets
 from rest_framework.response import Response
 from knox.models import AuthToken
-from .serializers import UserSerializer, RegisterSerializer, LoginSerializer#, UsersListSerializer
+from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
 from django.contrib.auth.models import User
 
 #register api
@@ -44,22 +44,3 @@ class UserApi(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
-
-"""
-class UsersListApi(viewsets.ModelViewSet):
-    
-    permission_classes = [
-        permissions.IsAuthenticated, 
-        permissions.IsAdminUser
-    ]
-    queryset = User.objects.all()
-    serializer_class = UsersListSerializer(queryset, many=True)
-
-    def get_queryset(self):
-        user = self.request.user
-        if check_admin(user):
-            return User.objects.all()
-        return self.request.user
-
-    #queryset = User.objects.all()
-"""

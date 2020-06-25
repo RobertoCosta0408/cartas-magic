@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCollections, deleteCollection } from '../../actions/collections';
 
-import Datatable from "react-bs-datatable"; // Import this package
-//import "bootstrap/dist/css/bootstrap.css";
+import Datatable from "react-bs-datatable";
 
 import NewCollectionModal from './NewCollectionsModal';
 import ConfirmRemoveModalCollection from './ConfirmRemoveModalCollection'
@@ -56,7 +55,6 @@ export class Collections extends Component {
         const header = this.header;
         const body = this.state.items;
         
-        //rever isto - mudar o axios para na action fazer set a isto
         this.state.isLoaded = true;
         this.state.items = this.props.collections;
 
@@ -83,7 +81,6 @@ export class Collections extends Component {
                 keyName="userTable"
                 tableClass="striped hover responsive"
                 rowsPerPage={5}
-                //rowsPerPageOption={[3, 5, 8, 10]}
                 initialSort={{ prop: "name", isAscending: true }}
             />
              
